@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This module contains the root http server application"""
 
-from flask import Flask
+from flask import Flask, jsonify
 from api.v1.views import app_views
 from models import storage
 from os import getenv
@@ -9,6 +9,10 @@ from os import getenv
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
+@app.errorhandler(404)
+def resource_not_found(error):
+    """Customer hander for page not found"""
+    return jsonify({"error": "Not found"}), 404
 
 @app.teardown_appcontext
 def cleanup(exception):
