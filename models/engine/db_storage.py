@@ -91,4 +91,4 @@ class DBStorage:
             instances = self.all(cls)
         else:
             instances = self.all()
-        return len(instances.keys())
+        return len(instances)
