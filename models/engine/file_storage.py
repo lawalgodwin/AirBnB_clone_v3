@@ -84,5 +84,5 @@ class FileStorage:
         if (cls and (cls in classes.values())):
             objects = self.all(cls)
         else:
-            objects = self.all()
+            objects = self.all(cls)
         return len(objects.keys())

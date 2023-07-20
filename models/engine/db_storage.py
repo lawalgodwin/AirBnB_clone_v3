@@ -87,8 +87,7 @@ class DBStorage:
         """returns the number of instances on the specified class
         count all storage objects if cls is None
         """
+        instances = self.all(cls)
         if (cls and (cls in classes.values())):
             instances = self.all(cls)
-        else:
-            instances = self.all()
         return len(instances)
