@@ -2,17 +2,21 @@
 """This module contains the root http server application"""
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
 from os import getenv
 
 app = Flask(__name__)
+cors = CORS(app, resources={r'/api/*': {"origins": "0.0.0.0"}})
 app.register_blueprint(app_views)
+
 
 @app.errorhandler(404)
 def resource_not_found(error):
     """Customer hander for page not found"""
     return jsonify({"error": "Not found"}), 404
+
 
 @app.teardown_appcontext
 def cleanup(exception):
